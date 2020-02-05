@@ -4,24 +4,16 @@ import argparse
 
 
 def find_max_profit(arr):
-    # variables
-    max_profit_so_far = max(arr)
+    # max profit
+    max_profit_so_far = max(arr[1:])
     current_min_price_so_far = 0
     index = 0
-    # find index of max
-    for i in arr:
-        if max_profit_so_far == i:
-            # array of past prices
-            my_arr = arr[:index]
-            if len(my_arr) == 0:
-                my_arr = arr[index+1:]
 
-                # current_min_price_so_far = min(my_arr)
-                max_profit_so_far = max(my_arr)
-                return max_profit_so_far
-            # min price
+    for i in arr:
+
+        if max_profit_so_far == i:
+            my_arr = arr[:index]
             current_min_price_so_far = min(my_arr)
-            # do the math
             max_profit_so_far -= current_min_price_so_far
         index += 1
 
