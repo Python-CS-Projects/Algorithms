@@ -5,21 +5,20 @@ import math
 
 def recipe_batches(recipe, ingredients):
     total = 0
-    notEnough = False
     index = 0
+    notEnough = False
     recipe_len = len(recipe) - 1
     for i in recipe:
-        # Check if all the needed ingredients exist
         if i in ingredients:
             if recipe[i] > ingredients[i]:
-                print(f"Not enough {i}")
                 notEnough = True
-            elif index == recipe_len:
-
+                return total
+            elif index == recipe_len and notEnough == False:
                 total += 1
+                return total + recipe_batches(recipe, ingredients)
             else:
                 ingredients[i] -= recipe[i]
-
+                # print(ingredients)
         else:
             return total
         index += 1
